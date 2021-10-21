@@ -19,6 +19,10 @@ public class CarController : MonoBehaviour
 
     private bool isBreaking;
 
+    // public float engineRevs;
+    // public float exhaustRate;
+    public ParticleSystem exhaust;
+
     [SerializeField]
     private float motorForce;
 
@@ -52,6 +56,10 @@ public class CarController : MonoBehaviour
     [SerializeField]
     private Transform rearRightWheelTransform;
 
+    void Start() {
+        exhaust = GetComponent<ParticleSystem>();
+    }
+
     private void FixedUpdate()
     {
         GetInput();
@@ -71,6 +79,8 @@ public class CarController : MonoBehaviour
     {
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
         frontRightWheelCollider.motorTorque = verticalInput * motorForce;
+   
+        // exhaust.emissionRate = verticalInput * motorForce;
         currentbreakForce = isBreaking ? breakForce : 0f;
         ApplyBreaking();
     }
