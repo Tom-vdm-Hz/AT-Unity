@@ -266,7 +266,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 400980591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dd2898637fd7d149adb09474aa27305, type: 3}
+  m_Script: {fileID: 11500000, guid: 682503edbcfcdb34899317383484ebd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Game
@@ -1176,7 +1176,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1938220633}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee142e797fd17c24281047734f96901c, type: 3}
+  m_Script: {fileID: 11500000, guid: 54eab8ecb1e923244baf10728c7ad93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotateAmount: {x: 20, y: 20, z: 0}

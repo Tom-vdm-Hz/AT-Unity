@@ -40,7 +40,7 @@ public class ExhaustSystem : MonoBehaviour
         float acceleration = (finalVelocity - initialVelocity) / Time.deltaTime;
         float absAccPrct = Mathf.Abs(acceleration / maxAcceleration);
 
-        Debug.Log($"Velocity : {finalVelocity} \n  Veclocity percent : {velocityPercent} \n Acceleration : {acceleration}");
+        //Debug.Log($"Velocity : {finalVelocity} \n  Veclocity percent : {velocityPercent} \n Acceleration : {acceleration}");
 
         ShowVehicleEffort(velocityPercent, absAccPrct);
     }
