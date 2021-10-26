@@ -2,10 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class CollidesWithCar : MonoBehaviour
 {
     private bool triggered = false;
     private string url;
+
+    private string scene;
 
     [SerializeField]
     private WheelCollider frontLeftWheelCollider;
@@ -26,9 +29,14 @@ public class CollidesWithCar : MonoBehaviour
 
     void Update()
     {
-        if (url != null && Input.GetKeyDown(KeyCode.C) && triggered)
+        if (url != null && Input.GetKeyDown(KeyCode.Return) && triggered)
         {
             Application.OpenURL(url);
+        }
+
+        if (!String.IsNullOrEmpty(scene) && Input.GetKeyDown(KeyCode.Return) && triggered)
+        {
+            SceneManager.LoadScene(scene);
         }
     }
 
@@ -43,15 +51,18 @@ public class CollidesWithCar : MonoBehaviour
         for (int i = 0; i < hits.Length; i++)
         {
             Collider hit = hits[i];
-
-            if (hit.GetComponent<LinkInfo>() != null)
+            if (hit != null)
             {
-                triggered = true;
-                url = hit.GetComponent<LinkInfo>().url;
-            }
-            else
-            {
-                triggered = false;
+                if (hit.GetComponent<LinkInfo>() != null)
+                {
+                    triggered = true;
+                    url = hit.GetComponent<LinkInfo>().url;
+                    scene = hit.GetComponent<LinkInfo>().scene;
+                }
+                else
+                {
+                    triggered = false;
+                }
             }
         }
     }
