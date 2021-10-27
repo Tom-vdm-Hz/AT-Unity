@@ -13,5 +13,9 @@ public class RestartScene : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R)) {
              SceneManager.LoadScene(sceneName);
         } 
+
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            SceneManager.LoadScene("Menu");
+        }
     }
 }

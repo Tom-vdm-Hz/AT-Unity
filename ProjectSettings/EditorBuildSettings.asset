@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Autonomous_Boat_Level.unity
     guid: eab9fb528f1414d4d97f5eb336fb8f54
+  - enabled: 1
+    path: Assets/Scenes/Instructions.unity
+    guid: f1feb701a8e975d45a1e129738b88937
   m_configObjects: {}
