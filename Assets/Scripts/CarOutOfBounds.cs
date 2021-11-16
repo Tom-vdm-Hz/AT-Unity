@@ -6,15 +6,20 @@ using UnityEngine.SceneManagement;
 public class CarOutOfBounds : MonoBehaviour
 {
     private GameObject plane;
-    private float x;
-    private float z;
     void Start(){
         plane = GameObject.Find("Plane");
-        x = (plane.transform.position.x + plane.transform.localScale.x);
-        z = plane.transform.position.z + plane.transform.localScale.z;
     }
 
     void Update(){
-        Debug.Log($"{plane.transform.position.x} {plane.transform.localScale.x}");
+        float planeX = (plane.transform.position.x + plane.transform.localScale.x);
+        float planeZ = plane.transform.position.z + plane.transform.localScale.z;
+
+        float carX = this.gameObject.transform.position.x;
+        float carZ = this.gameObject.transform.position.y;
+
+        // if(this.gameObject.){
+        //     SceneManager.LoadScene("Game");
+        // }
+        Debug.Log($"{carX} {carZ}");
     }
 }
