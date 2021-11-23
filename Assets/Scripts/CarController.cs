@@ -9,9 +9,9 @@ public class CarController : MonoBehaviour
 
     private const string VERTICAL = "Vertical";
 
-    private float horizontalInput;
+    public float horizontalInput;
 
-    private float verticalInput;
+    public float verticalInput;
 
     private float currentSteerAngle;
 
@@ -20,7 +20,7 @@ public class CarController : MonoBehaviour
     private bool isBreaking;
 
     [SerializeField]
-    private float motorForce;
+    public float motorForce;
 
     [SerializeField]
     private float breakForce;

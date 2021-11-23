@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 public class CollidesWithCar : MonoBehaviour
 {
     private bool triggered = false;
+
+    private bool physicsTriggered = false;
+
+    private List<Rigidbody> objects;
+
     private string url;
 
     private string scene;
@@ -44,6 +49,7 @@ public class CollidesWithCar : MonoBehaviour
     {
         Collider[] hits = GetWheelHits();
         CollidesWithLink(hits);
+        CollidesWithPhysicsObject();
     }
 
     private void CollidesWithLink(Collider[] hits)
@@ -67,6 +73,22 @@ public class CollidesWithCar : MonoBehaviour
         }
     }
 
+    private void CollidesWithPhysicsObject()
+    {
+        if (physicsTriggered)
+        {
+            foreach (var body in objects)
+            {
+                if ((body != null || !body.isKinematic) && body.GetComponent<PhysicsObject>() != null)
+                {
+                    body.velocity = new Vector3(100, 0, 100);
+                }
+                return;
+                // this.GetComponent<CarController>().motorForce;
+            }
+        }
+    }
+
     private Collider[] GetWheelHits()
     {
         frontLeftHit = GetWheelHit(frontLeftWheelCollider);
@@ -86,8 +108,9 @@ public class CollidesWithCar : MonoBehaviour
 
     private void OnCollisionEnter(Collision collisionInfo)
     {
-        Debug.Log($"Collision enter");
-        triggered = true;
+        Debug.Log($"Collision enter {collisionInfo.gameObject.name}");
+        objects.Add(collisionInfo.collider.attachedRigidbody);
+        physicsTriggered = true;
     }
 
     private void OnCollisionStay(Collision collisionInfo)
@@ -98,7 +121,8 @@ public class CollidesWithCar : MonoBehaviour
     private void OnCollisionExit(Collision collisionInfo)
     {
         Debug.Log("Collision Exit");
-        triggered = false;
+        objects.Remove(collisionInfo.collider.attachedRigidbody);
+        physicsTriggered = false;
     }
 
 }
