@@ -16,16 +16,16 @@ public class CollidesWithCar : MonoBehaviour
     private string scene;
 
     [SerializeField]
-    private WheelCollider frontLeftWheelCollider;
+    public WheelCollider frontLeftWheelCollider;
 
     [SerializeField]
-    private WheelCollider frontRightWheelCollider;
+    public WheelCollider frontRightWheelCollider;
 
     [SerializeField]
-    private WheelCollider rearLeftWheelCollider;
+    public WheelCollider rearLeftWheelCollider;
 
     [SerializeField]
-    private WheelCollider rearRightWheelCollider;
+    public WheelCollider rearRightWheelCollider;
 
     private Collider frontLeftHit;
     private Collider frontRightHit;
@@ -49,7 +49,28 @@ public class CollidesWithCar : MonoBehaviour
     {
         Collider[] hits = GetWheelHits();
         CollidesWithLink(hits);
+        CollidesWithSea(hits);
         CollidesWithPhysicsObject();
+    }
+
+    private void CollidesWithSea(Collider[] hits)
+    {
+        for (int i = 0; i < hits.Length; i++)
+        {
+            Collider hit = hits[i];
+            if (hit != null)
+            {
+                String name = hit.gameObject.name;
+                if (name == "Sea")
+                {
+                    this.gameObject.GetComponentInParent<Test>().ChangeModel();
+                }
+                // else
+                // {
+                //     this.gameObject.GetComponentInParent<Test>().ChangeModel();
+                // }
+            }
+        }
     }
 
     private void CollidesWithLink(Collider[] hits)
@@ -121,7 +142,10 @@ public class CollidesWithCar : MonoBehaviour
     private void OnCollisionExit(Collision collisionInfo)
     {
         Debug.Log("Collision Exit");
-        objects.Remove(collisionInfo.collider.attachedRigidbody);
+        if (objects.Contains(collisionInfo.collider.attachedRigidbody))
+        {
+            objects.Remove(collisionInfo.collider.attachedRigidbody);
+        }
         physicsTriggered = false;
     }
 
