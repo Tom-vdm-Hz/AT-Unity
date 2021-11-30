@@ -100,11 +100,10 @@ public class CollidesWithCar : MonoBehaviour
         {
             foreach (var body in objects)
             {
-                if ((body != null || !body.isKinematic) && body.GetComponent<PhysicsObject>() != null)
+                if ((body != null && !body.isKinematic) && body.GetComponent<PhysicsObject>() != null)
                 {
-                    body.velocity = new Vector3(100, 0, 100);
+                    body.velocity = new Vector3(5, 0, 5);
                 }
-                return;
                 // this.GetComponent<CarController>().motorForce;
             }
         }
@@ -130,7 +129,10 @@ public class CollidesWithCar : MonoBehaviour
     private void OnCollisionEnter(Collision collisionInfo)
     {
         Debug.Log($"Collision enter {collisionInfo.gameObject.name}");
-        objects.Add(collisionInfo.collider.attachedRigidbody);
+        Debug.Log($"Collision enter {collisionInfo.collider.attachedRigidbody}");
+        Rigidbody rigidbody = collisionInfo.collider.attachedRigidbody;
+        if(objects == null) objects = new List<Rigidbody>();
+        objects.Add(rigidbody);
         physicsTriggered = true;
     }
 

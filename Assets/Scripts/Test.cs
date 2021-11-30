@@ -1,9 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 public class Test : MonoBehaviour
 {
     [SerializeField]
@@ -24,7 +19,8 @@ public class Test : MonoBehaviour
             follow.target = currentModel.transform;
 
             currentModel.GetComponent<CarController>().enabled = true;
-            currentModel.GetComponent<CollidesWithCar>().enabled = true;
+            //currentModel.GetComponent<CollidesWithCar>().enabled = true;
+            currentModel.GetComponent<PlayerCollision>().enabled = true;
         }
     }
 
