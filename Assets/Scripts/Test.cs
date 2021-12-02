@@ -24,19 +24,23 @@ public class Test : MonoBehaviour
         }
     }
 
-    private void makeModel(GameObject model){
-            GameObject transformation = Instantiate(model, currentModel.transform.position, currentModel.transform.rotation);
-            transformation.transform.parent = transform;
-            CameraFollow follow = Camera.main.GetComponent<CameraFollow>();
-            follow.target = transformation.transform;
-            Destroy(currentModel);
-            currentModel = transformation;
-            currentModel.GetComponent<CarController>().enabled = true;
-            currentModel.GetComponent<CollidesWithCar>().enabled = true;
+    private void makeModel(GameObject model)
+    {
+        GameObject transformation = Instantiate(model, currentModel.transform.position, currentModel.transform.rotation);
+        transformation.transform.parent = transform;
+        CameraFollow follow = Camera.main.GetComponent<CameraFollow>();
+        follow.target = transformation.transform;
+        Destroy(currentModel);
+        currentModel = transformation;
+        if(currentModel.GetComponent<CarController>() != null) currentModel.GetComponent<CarController>().enabled = true;
+        //if(currentModel.GetComponent<CollidesWithCar>() != null) currentModel.GetComponent<CollidesWithCar>().enabled = true;
+        if(currentModel.GetComponent<PlayerCollision>() != null) currentModel.GetComponent<PlayerCollision>().enabled = true;
+        if(currentModel.GetComponent<CarController>() != null) currentModel.GetComponent<BoatController>().enabled = true;
+
     }
 
     public void ChangeModel()
-    {   
+    {
         Debug.Log(currentModel == carModel);
         if (currentModel.name.Contains("Car"))
         {
