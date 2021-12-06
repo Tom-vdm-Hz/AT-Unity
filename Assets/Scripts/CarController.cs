@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof(AudioSource))]
 public class CarController : MonoBehaviour
 {
+	
     private const string HORIZONTAL = "Horizontal";
 
     private const string VERTICAL = "Vertical";
@@ -20,7 +21,8 @@ public class CarController : MonoBehaviour
     private bool isBreaking;
 
     [SerializeField]
-    private float motorForce;
+    private float motorForce;   
+	
 
     [SerializeField]
     private float breakForce;
@@ -58,6 +60,29 @@ public class CarController : MonoBehaviour
         HandleMotor();
         HandleSteering();
         UpdateWheels();
+		Update();
+    }
+	public int startingPitch = 0;
+    AudioSource audioSource;
+	
+     void Start()
+    {
+        //Fetch the AudioSource from the GameObject
+        audioSource = GetComponent<AudioSource>();
+
+        //Initialize the pitch
+        audioSource.pitch = startingPitch;
+    }
+	
+    void Update()
+    {
+        
+        if (frontLeftWheelCollider.motorTorque != 0)
+        {
+            audioSource.pitch = this.GetComponent<Rigidbody>().velocity.x/2;
+            audioSource.pitch = this.GetComponent<Rigidbody>().velocity.z/2;
+			
+        }
     }
 
     private void GetInput()
@@ -74,6 +99,8 @@ public class CarController : MonoBehaviour
         currentbreakForce = isBreaking ? breakForce : 0f;
         ApplyBreaking();
     }
+	
+	
 
     private void ApplyBreaking()
     {
@@ -96,7 +123,10 @@ public class CarController : MonoBehaviour
         UpdateSingleWheel(frontRightWheelCollider, frontRightWheeTransform);
         UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform);
         UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform);
-    }
+    } 
+	
+	
+	
 
     private void UpdateSingleWheel(
         WheelCollider wheelCollider,
@@ -109,4 +139,6 @@ public class CarController : MonoBehaviour
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
     }
+	
+	
 }
