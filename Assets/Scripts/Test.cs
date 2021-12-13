@@ -35,13 +35,12 @@ public class Test : MonoBehaviour
         if(currentModel.GetComponent<CarController>() != null) currentModel.GetComponent<CarController>().enabled = true;
         //if(currentModel.GetComponent<CollidesWithCar>() != null) currentModel.GetComponent<CollidesWithCar>().enabled = true;
         if(currentModel.GetComponent<PlayerCollision>() != null) currentModel.GetComponent<PlayerCollision>().enabled = true;
-        if(currentModel.GetComponent<CarController>() != null) currentModel.GetComponent<BoatController>().enabled = true;
+        if(currentModel.GetComponent<BoatController>() != null) currentModel.GetComponent<BoatController>().enabled = true;
 
     }
 
     public void ChangeModel()
     {
-        Debug.Log(currentModel == carModel);
         if (currentModel.name.Contains("Car"))
         {
             makeModel(boatModel);

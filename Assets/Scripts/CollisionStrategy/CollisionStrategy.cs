@@ -1,6 +1,9 @@
 using System;
-using System.Runtime.InteropServices;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 public interface CollisionStrategy {
-    void Collides(Collider[] hits, MonoBehaviour parent);
+    #nullable enable
+    void Collides(Collider[] hits, MonoBehaviour parent, List<Rigidbody>? objects);
+    #nullable disable
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,7 +13,7 @@ public class CollisionWithLink : ScriptableObject, CollisionStrategy
         intervalPassed = true;
     }
 
-    public void Collides(Collider[] hits, MonoBehaviour parent)
+    public void Collides(Collider[] hits, MonoBehaviour parent, List<Rigidbody> objects)
     {
         if (hits == null)
         {

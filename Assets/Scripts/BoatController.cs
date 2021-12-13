@@ -29,8 +29,8 @@ public class BoatController : MonoBehaviour
     private void FixedUpdate()
     {
         GetInput();
-        // HandleMotor();
-        // HandleSteering();
+        HandleMotor();
+        HandleSteering();
         // UpdateWheels();
     }
 
@@ -39,6 +39,24 @@ public class BoatController : MonoBehaviour
         horizontalInput = Input.GetAxis(HORIZONTAL);
         verticalInput = Input.GetAxis(VERTICAL);
         isBreaking = Input.GetKey(KeyCode.Space);
+    }
+
+    private void HandleMotor()
+    {
+        this.gameObject.transform.Translate(Vector3.forward * (verticalInput / 10));
+    }
+
+    private void HandleSteering()
+    {
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            transform.Rotate(Vector3.up * motorForce * Time.deltaTime);
+        }
+
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.Rotate(-Vector3.up * motorForce * Time.deltaTime);
+        }
     }
 
 }

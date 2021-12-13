@@ -1,9 +1,10 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 public class CollisionWithSea : ScriptableObject, CollisionStrategy
 {
 
-    public void Collides(Collider[] hits, MonoBehaviour parent)
+    public void Collides(Collider[] hits, MonoBehaviour parent, List<Rigidbody> objects)
     {
         if (hits == null)
         {
@@ -19,14 +20,12 @@ public class CollisionWithSea : ScriptableObject, CollisionStrategy
                 {
                     try
                     {
-                        if(parent != null) parent.gameObject.GetComponentInParent<Test>().ChangeModel();
-                    }catch(NullReferenceException err){
+                        if (parent != null) parent.gameObject.GetComponentInParent<Test>().ChangeModel();
+                    }
+                    catch (NullReferenceException err)
+                    {
                         Debug.Log($"{err}");
                     }
-                }
-                else
-                {
-                    //    parent.gameObject.GetComponentInParent<Test>().ChangeModel();
                 }
             }
         }

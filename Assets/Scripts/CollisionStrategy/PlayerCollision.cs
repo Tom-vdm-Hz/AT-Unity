@@ -10,6 +10,7 @@ public class PlayerCollision : MonoBehaviour
         Water,
         Object,
         Link,
+        Land,
     }
 
     private bool initialized = false;
@@ -37,6 +38,7 @@ public class PlayerCollision : MonoBehaviour
         strategies.Add(CollisionType.Link, ScriptableObject.CreateInstance<CollisionWithLink>());
         strategies.Add(CollisionType.Water, ScriptableObject.CreateInstance<CollisionWithSea>());
         strategies.Add(CollisionType.Object, ScriptableObject.CreateInstance<CollisionWithObject>());
+        strategies.Add(CollisionType.Land, ScriptableObject.CreateInstance<CollisionWithLand>());
         initialized = true;
     }
 
@@ -60,6 +62,11 @@ public class PlayerCollision : MonoBehaviour
                 Collides(strategy.Key);
             }
         }
+    }
+
+    private GameObject[] GetGameObjects()
+    {
+        return GameObject.FindGameObjectsWithTag("Untagged");
     }
 
     private Collider[] GetWheelHits()
@@ -90,12 +97,25 @@ public class PlayerCollision : MonoBehaviour
         }
 
         Collider[] hits = GetWheelHits();
-        strategy.Collides(hits, this);
+
+        // if (hits == null)
+        // {
+        //     GameObject[] gameObjects = GetGameObjects();
+        //     List<Collider> colliders = new List<Collider>();
+        //     foreach (GameObject gameObject in gameObjects)
+        //     {
+        //         colliders.Add(gameObject.GetComponent<Collider>());
+        //     }
+        //     hits = colliders.ToArray();
+        //     Debug.Log(hits);
+        // }
+        // Debug.Log(hits);
+        strategy.Collides(hits, this, objects);
     }
 
     private void OnCollisionEnter(Collision collisionInfo)
     {
-        Debug.Log($"Collision enter {collisionInfo.gameObject.name}");
+        Debug.Log($"{collisionInfo.collider.name}");
         if (objects == null) objects = new List<Rigidbody>();
         objects.Add(collisionInfo.collider.attachedRigidbody);
         physicsTriggered = true;
@@ -103,11 +123,12 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnCollisionStay(Collision collisionInfo)
     {
-        Debug.Log($"Collision stay");
+        // Debug.Log($"Collision stay");
     }
 
     private void OnCollisionExit(Collision collisionInfo)
     {
+        Debug.Log($"{collisionInfo.collider.gameObject.name}");
         if (objects.Contains(collisionInfo.collider.attachedRigidbody))
         {
             objects.Remove(collisionInfo.collider.attachedRigidbody);
