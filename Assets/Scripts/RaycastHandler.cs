@@ -17,7 +17,7 @@ public class RaycastHandler : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 100.0f))
             {
                 ExecuteLinkInfo(hit);
-                Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
+                // Debug.Log("You selected the " + hit.transform.name); // ensure you picked right object
             }
         }
     }
@@ -28,7 +28,7 @@ public class RaycastHandler : MonoBehaviour
         {
             var url = hit.collider.GetComponent<LinkInfo>().url;
             var scene = hit.collider.GetComponent<LinkInfo>().scene;
-            Debug.Log($"{url} {scene}");
+            // Debug.Log($"{url} {scene}");
             if (url != null)
             {
                 Application.OpenURL(url);

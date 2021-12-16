@@ -36,14 +36,13 @@ public class PlayerCollision : MonoBehaviour
     {
         strategies = new Dictionary<CollisionType, CollisionStrategy>();
         strategies.Add(CollisionType.Link, ScriptableObject.CreateInstance<CollisionWithLink>());
-        strategies.Add(CollisionType.Water, ScriptableObject.CreateInstance<CollisionWithSea>());
         strategies.Add(CollisionType.Object, ScriptableObject.CreateInstance<CollisionWithObject>());
-        strategies.Add(CollisionType.Land, ScriptableObject.CreateInstance<CollisionWithLand>());
         initialized = true;
     }
 
     void Update()
     {
+        Debug.Log(this.name);
         if (initialized)
         {
             foreach (KeyValuePair<CollisionType, CollisionStrategy> strategy in strategies)
@@ -96,20 +95,8 @@ public class PlayerCollision : MonoBehaviour
             return;
         }
 
-        Collider[] hits = GetWheelHits();
+        Collider[] hits = frontLeftWheelCollider != null ? GetWheelHits() : null;
 
-        // if (hits == null)
-        // {
-        //     GameObject[] gameObjects = GetGameObjects();
-        //     List<Collider> colliders = new List<Collider>();
-        //     foreach (GameObject gameObject in gameObjects)
-        //     {
-        //         colliders.Add(gameObject.GetComponent<Collider>());
-        //     }
-        //     hits = colliders.ToArray();
-        //     Debug.Log(hits);
-        // }
-        // Debug.Log(hits);
         strategy.Collides(hits, this, objects);
     }
 
@@ -121,18 +108,31 @@ public class PlayerCollision : MonoBehaviour
         physicsTriggered = true;
     }
 
-    private void OnCollisionStay(Collision collisionInfo)
-    {
-        // Debug.Log($"Collision stay");
-    }
-
     private void OnCollisionExit(Collision collisionInfo)
     {
-        Debug.Log($"{collisionInfo.collider.gameObject.name}");
+        // Debug.Log($"{collisionInfo.collider.gameObject.name}");
         if (objects.Contains(collisionInfo.collider.attachedRigidbody))
         {
             objects.Remove(collisionInfo.collider.attachedRigidbody);
         }
         physicsTriggered = false;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.gameObject.name);
+        if (other.gameObject.name == "Sea" && this.name.Contains("Car"))
+        {
+            if (this != null) this.gameObject.GetComponentInParent<Test>().ChangeModel("boat");
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        Debug.Log($"exit {other.gameObject.name}");
+        if (other.gameObject.name == "Sea"  && this.name.Contains("boat"))
+        {
+            if (this != null) this.gameObject.GetComponentInParent<Test>().ChangeModel("car");
+        }
     }
 }

@@ -31,7 +31,6 @@ public class BoatController : MonoBehaviour
         GetInput();
         HandleMotor();
         HandleSteering();
-        // UpdateWheels();
     }
 
     private void GetInput()

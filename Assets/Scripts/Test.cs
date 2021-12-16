@@ -19,7 +19,6 @@ public class Test : MonoBehaviour
             follow.target = currentModel.transform;
 
             currentModel.GetComponent<CarController>().enabled = true;
-            //currentModel.GetComponent<CollidesWithCar>().enabled = true;
             currentModel.GetComponent<PlayerCollision>().enabled = true;
         }
     }
@@ -33,21 +32,14 @@ public class Test : MonoBehaviour
         Destroy(currentModel);
         currentModel = transformation;
         if(currentModel.GetComponent<CarController>() != null) currentModel.GetComponent<CarController>().enabled = true;
-        //if(currentModel.GetComponent<CollidesWithCar>() != null) currentModel.GetComponent<CollidesWithCar>().enabled = true;
         if(currentModel.GetComponent<PlayerCollision>() != null) currentModel.GetComponent<PlayerCollision>().enabled = true;
         if(currentModel.GetComponent<BoatController>() != null) currentModel.GetComponent<BoatController>().enabled = true;
 
     }
 
-    public void ChangeModel()
-    {
-        if (currentModel.name.Contains("Car"))
-        {
-            makeModel(boatModel);
-        }
-        else
-        {
-            makeModel(carModel);
-        }
+    public void ChangeModel(string model)
+    {   
+        if(model == "car") makeModel(carModel);
+        if(model == "boat") makeModel(boatModel);
     }
 }

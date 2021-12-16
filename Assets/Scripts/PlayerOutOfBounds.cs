@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CarOutOfBounds : MonoBehaviour
+public class PlayerOutOfBounds : MonoBehaviour
 {
     private GameObject plane;
     void Start(){
@@ -11,6 +11,7 @@ public class CarOutOfBounds : MonoBehaviour
     }
 
     void Update(){
+        // Renderer.bounds()
         float planeX = (plane.transform.position.x + plane.transform.localScale.x);
         float planeZ = plane.transform.position.z + plane.transform.localScale.z;
 
