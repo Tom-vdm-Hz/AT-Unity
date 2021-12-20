@@ -109,18 +109,18 @@ MonoBehaviour:
   points:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
-  - {x: 0, y: 0, z: 17.290527}
-  - {x: 0, y: 0, z: 18.290527}
+  - {x: -10.410858, y: 0, z: 8.340576}
+  - {x: -10.410858, y: 0, z: 9.340576}
   normals:
   - {x: 0, y: 1, z: 0}
   - {x: 0, y: 1, z: 0}
   angles: []
   bounds:
-    m_Center: {x: 0, y: 0, z: 9.145264}
-    m_Extent: {x: 0, y: 0, z: 9.145264}
+    m_Center: {x: -5.205429, y: 0, z: 4.670288}
+    m_Extent: {x: 5.205429, y: 0, z: 4.670288}
   boundingBoxes:
-  - m_Center: {x: 0, y: 0, z: 9.145264}
-    m_Extent: {x: 0, y: 0, z: 9.145264}
+  - m_Center: {x: -5.205429, y: 0, z: 4.670288}
+    m_Extent: {x: 5.205429, y: 0, z: 4.670288}
 --- !u!33 &6358925209486892791
 MeshFilter:
   m_ObjectHideFlags: 0
