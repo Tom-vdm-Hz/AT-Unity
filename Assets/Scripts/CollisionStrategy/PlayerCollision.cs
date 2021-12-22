@@ -42,7 +42,6 @@ public class PlayerCollision : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(this.name);
         if (initialized)
         {
             foreach (KeyValuePair<CollisionType, CollisionStrategy> strategy in strategies)
@@ -120,7 +119,7 @@ public class PlayerCollision : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
+        // Debug.Log(other.gameObject.name);
         if (other.gameObject.name == "Sea" && this.name.Contains("Car"))
         {
             if (this != null) this.gameObject.GetComponentInParent<Test>().ChangeModel("boat");
@@ -129,7 +128,7 @@ public class PlayerCollision : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        Debug.Log($"exit {other.gameObject.name}");
+        // Debug.Log($"exit {other.gameObject.name}");
         if (other.gameObject.name == "Sea"  && this.name.Contains("boat"))
         {
             if (this != null) this.gameObject.GetComponentInParent<Test>().ChangeModel("car");

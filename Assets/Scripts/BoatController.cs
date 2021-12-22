@@ -47,12 +47,12 @@ public class BoatController : MonoBehaviour
 
     private void HandleSteering()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.Rotate(Vector3.up * motorForce * Time.deltaTime);
         }
 
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Rotate(-Vector3.up * motorForce * Time.deltaTime);
         }
