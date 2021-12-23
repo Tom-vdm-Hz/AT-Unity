@@ -31,7 +31,6 @@ public class Test : MonoBehaviour
         follow.target = transformation.transform;
         Destroy(currentModel);
         currentModel = transformation;
-        if(m == "boat") currentModel.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
         if(currentModel.GetComponent<CarController>() != null) currentModel.GetComponent<CarController>().enabled = true;
         if(currentModel.GetComponent<PlayerCollision>() != null) currentModel.GetComponent<PlayerCollision>().enabled = true;
         if(currentModel.GetComponent<BoatController>() != null) currentModel.GetComponent<BoatController>().enabled = true;

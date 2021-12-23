@@ -42,7 +42,7 @@ public class PlayerCollision : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(this.name);
+        // Debug.Log(this.name);
         if (initialized)
         {
             foreach (KeyValuePair<CollisionType, CollisionStrategy> strategy in strategies)
@@ -102,7 +102,7 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collisionInfo)
     {
-        Debug.Log($"{collisionInfo.collider.name}");
+        // Debug.Log($"{collisionInfo.collider.name}");
         if (objects == null) objects = new List<Rigidbody>();
         objects.Add(collisionInfo.collider.attachedRigidbody);
         physicsTriggered = true;
@@ -120,18 +120,21 @@ public class PlayerCollision : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
+        // Debug.Log(other.gameObject.name);
         if (other.gameObject.name == "Sea" && this.name.Contains("Car"))
         {
-            if (this != null) this.gameObject.GetComponentInParent<Test>().ChangeModel("boat");
+            Debug.Log("toboat");
+            if (this != null && this.name.Contains("Car")) this.gameObject.GetComponentInParent<Test>().ChangeModel("boat");
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        Debug.Log($"exit {other.gameObject.name}");
-        if (other.gameObject.name == "Sea"  && this.name.Contains("boat"))
+        // Debug.Log($"exit {other.gameObject.name}");
+        Debug.Log("shouldgotocar");
+        if (other.gameObject.name == "Sea"  && this.name.Contains("Boat"))
         {
+            Debug.Log("tocar");
             if (this != null) this.gameObject.GetComponentInParent<Test>().ChangeModel("car");
         }
     }

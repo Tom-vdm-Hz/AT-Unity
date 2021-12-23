@@ -86,18 +86,18 @@ public class CollidesWithCar : MonoBehaviour
 
     private void OnCollisionEnter(Collision collisionInfo)
     {
-        Debug.Log($"Collision enter");
+        // Debug.Log($"Collision enter");
         triggered = true;
     }
 
     private void OnCollisionStay(Collision collisionInfo)
     {
-        Debug.Log($"Collision");
+        // Debug.Log($"Collision");
     }
 
     private void OnCollisionExit(Collision collisionInfo)
     {
-        Debug.Log("Collision Exit");
+        // Debug.Log("Collision Exit");
         triggered = false;
     }
 
