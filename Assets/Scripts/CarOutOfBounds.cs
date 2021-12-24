@@ -20,6 +20,6 @@ public class CarOutOfBounds : MonoBehaviour
         // if(this.gameObject.){
         //     SceneManager.LoadScene("Game");
         // }
-        Debug.Log($"{carX} {carZ}");
+        // Debug.Log($"{carX} {carZ}");
     }
 }
