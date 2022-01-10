@@ -23,7 +23,7 @@ public class Test : MonoBehaviour
         }
     }
 
-    private void makeModel(GameObject model)
+    private void makeModel(GameObject model, string m)
     {
         GameObject transformation = Instantiate(model, currentModel.transform.position, currentModel.transform.rotation);
         transformation.transform.parent = transform;
@@ -33,13 +33,12 @@ public class Test : MonoBehaviour
         currentModel = transformation;
         if(currentModel.GetComponent<CarController>() != null) currentModel.GetComponent<CarController>().enabled = true;
         if(currentModel.GetComponent<PlayerCollision>() != null) currentModel.GetComponent<PlayerCollision>().enabled = true;
-        if(currentModel.GetComponent<BoatsController>() != null) currentModel.GetComponent<BoatsController>().enabled = true;
-
+        if(currentModel.GetComponent<BoatController>() != null) currentModel.GetComponent<BoatController>().enabled = true;
     }
 
     public void ChangeModel(string model)
     {   
-        if(model == "car") makeModel(carModel);
-        if(model == "boat") makeModel(boatModel);
+        if(model == "car") makeModel(carModel,"car");
+        if(model == "boat") makeModel(boatModel,"boat");
     }
 }

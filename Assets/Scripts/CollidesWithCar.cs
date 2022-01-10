@@ -38,6 +38,11 @@ public class CollidesWithCar : MonoBehaviour
         {
             SceneManager.LoadScene(scene);
         }
+
+        if(Input.GetKeyDown(KeyCode.T)){
+            transform.rotation = new Quaternion(0f, transform.rotation.y, 0f, transform.rotation.w);
+            transform.Translate(0, 10 ,0);
+        }
     }
 
     void FixedUpdate()
@@ -86,18 +91,18 @@ public class CollidesWithCar : MonoBehaviour
 
     private void OnCollisionEnter(Collision collisionInfo)
     {
-        Debug.Log($"Collision enter");
+        // Debug.Log($"Collision enter");
         triggered = true;
     }
 
     private void OnCollisionStay(Collision collisionInfo)
     {
-        Debug.Log($"Collision");
+        // Debug.Log($"Collision");
     }
 
     private void OnCollisionExit(Collision collisionInfo)
     {
-        Debug.Log("Collision Exit");
+        // Debug.Log("Collision Exit");
         triggered = false;
     }
 
