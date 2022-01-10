@@ -126,16 +126,24 @@ public class PlayerCollision : MonoBehaviour
             Debug.Log("toboat");
             if (this != null && this.name.Contains("Car")) this.gameObject.GetComponentInParent<Test>().ChangeModel("boat");
         }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        // Debug.Log($"exit {other.gameObject.name}");
-        Debug.Log("shouldgotocar");
-        if (other.gameObject.name == "Sea"  && this.name.Contains("Boat"))
+          if (other.gameObject.name != "Sea" && this.name.Contains("boat(Clone)"))
         {
             Debug.Log("tocar");
+            this.transform.position += this.transform.forward * 12;
             if (this != null) this.gameObject.GetComponentInParent<Test>().ChangeModel("car");
         }
     }
+
+    /*  void OnTriggerExit(Collider other)
+      {
+          // Debug.Log($"exit {other.gameObject.name}");
+          Debug.Log("shouldgotocar");
+
+          if (other.gameObject.name == "Sea"  && this.name.Contains("boat(Clone)"))
+          {
+              Debug.Log("tocar");
+              if (this != null) this.gameObject.GetComponentInParent<Test>().ChangeModel("car");
+          }
+      }*/
+   
 }

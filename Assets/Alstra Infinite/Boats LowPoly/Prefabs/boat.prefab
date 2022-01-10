@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 5181859529908234414}
   - component: {fileID: -5558205177128588790}
   m_Layer: 0
-  m_Name: Boat
+  m_Name: boat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -308,7 +308,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3, y: 2, z: 8}
-  m_Center: {x: 0.75, y: 1, z: -2}
+  m_Center: {x: 0.75, y: 1, z: 2.5}
 --- !u!114 &5181859529908234414
 MonoBehaviour:
   m_ObjectHideFlags: 0
