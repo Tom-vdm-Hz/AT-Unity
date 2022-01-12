@@ -13,7 +13,7 @@ public class Test : MonoBehaviour
     {
         if (currentModel == null)
         {
-            currentModel = Instantiate(carModel, new Vector3(4, 5, 4), transform.rotation);
+            currentModel = Instantiate(carModel, new Vector3(-77, 3, 195), transform.rotation);
             currentModel.transform.parent = transform;
             CameraFollow follow = Camera.main.GetComponent<CameraFollow>();
             follow.target = currentModel.transform;

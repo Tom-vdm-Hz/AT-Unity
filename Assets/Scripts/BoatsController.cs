@@ -42,7 +42,7 @@ public class BoatsController : MonoBehaviour
 
     private void HandleMotor()
     {
-        this.gameObject.transform.Translate(Vector3.forward * (verticalInput / 10));
+        this.gameObject.transform.Translate(Vector3.forward * (verticalInput / 5));
     }
 
     private void HandleSteering()
