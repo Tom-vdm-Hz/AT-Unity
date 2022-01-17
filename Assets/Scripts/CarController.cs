@@ -65,7 +65,7 @@ public class CarController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.T)){
             
             transform.rotation = new Quaternion(0f, transform.rotation.y, 0f, transform.rotation.w);
-            transform.Translate(0, 10, 0);
+            transform.Translate(0, 10, -5);
         }
     }
 
